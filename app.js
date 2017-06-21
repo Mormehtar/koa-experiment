@@ -7,7 +7,6 @@ const DAO = require('./dao');
 
 module.exports = config => {
   const app = new koa();
-  // delete config.db.driver;
   app.context.dao = new DAO(pgp(config.db));
   app.context.config = config;
 
