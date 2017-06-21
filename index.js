@@ -15,6 +15,6 @@ const options = {
 
 // start the server
 http.createServer(app.callback())
-  .listen(config.httpPort, () => console.log(`Listen ${config.httpPort} for HTTP`));
+  .listen(config.httpPort, () => console.log(`Listen ${config.httpPort} port for HTTP`));
 https.createServer(options, app.callback())
-  .listen(config.httpsPort, () => console.log(`Listen ${config.httpsPort} for HTTPS`));
+  .listen(config.httpsPort, () => console.log(`Listen ${config.httpsPort} port for HTTPS`));

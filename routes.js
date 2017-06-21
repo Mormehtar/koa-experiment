@@ -3,21 +3,21 @@ const Joi = Router.Joi;
 
 const routes = Router();
 
-routes.route({
-  method: 'post',
-  path: '/user',
-  validate: {
-    body: {
-      UserID: Joi.string().max(200).required(),
-    },
-    type: 'json'
+routes.post(
+  '/:UserID',
+  {
+    validate: {
+      params: {
+        UserID: Joi.string().max(200).required(),
+      }
+    }
   },
-  handler: async (ctx) => {
-    return ctx.dao.createUser(ctx.request.body.UserID)
+  async (ctx) => {
+    return ctx.dao.createUser(ctx.request.params.UserID)
       .then(result => (result ? 201 : 304))
       .then(result => { ctx.status = result; });
   }
-});
+);
 
 
 

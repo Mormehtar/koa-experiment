@@ -1,12 +1,13 @@
 const koa = require('koa');
 const forceSSL = require('koa-force-ssl');
-const pgp = require('pg-promise');
+const pgp = require('pg-promise')();
 const routes = require('./routes');
 
 const DAO = require('./dao');
 
 module.exports = config => {
   const app = new koa();
+  // delete config.db.driver;
   app.context.dao = new DAO(pgp(config.db));
   app.context.config = config;
 

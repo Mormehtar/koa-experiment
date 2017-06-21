@@ -9,7 +9,7 @@ class DAO {
 }
 
 DAO.queries = {
-  createUser: `INSERT INTO "Users" (UserID) VALUES ($1) ON CONFLICT DO NOTHING RETURNING UserID;`
+  createUser: `INSERT INTO "Users" ("UserID") VALUES ($1) ON CONFLICT DO NOTHING RETURNING "UserID";`
 };
 
 module.exports = DAO;
