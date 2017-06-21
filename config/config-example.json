@@ -1,0 +1,6 @@
+{
+  "certificates": {
+    "key": "certificates-example/cert.key",
+    "cert": "certificates-example/cert.crt"
+  }
+}
