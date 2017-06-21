@@ -1,0 +1,16 @@
+{
+  "certificates": {
+    "key": "certificates-example/cert.key",
+    "cert": "certificates-example/cert.crt"
+  },
+  "httpPort": 3000,
+  "httpsPort": 3001,
+  "db": {
+    "driver": "pg",
+    "host": "localhost",
+    "port": 5432,
+    "database": "koa_experiment",
+    "user": "postgres",
+    "password": ""
+  }
+}
