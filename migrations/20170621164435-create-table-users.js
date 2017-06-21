@@ -2,7 +2,7 @@ exports.up = function(db) {
   return db.runSql(`
     CREATE TABLE "Users" (
       "UserID" varchar PRIMARY KEY,
-      "UserProfile" varchar
+      "UserProfile" text
     )
   `);
 };

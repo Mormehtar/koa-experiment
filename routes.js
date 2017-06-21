@@ -12,13 +12,49 @@ routes.post(
       }
     }
   },
-  async (ctx) => {
+  ctx => {
     return ctx.dao.createUser(ctx.request.params.UserID)
-      .then(result => (result ? 201 : 304))
+      .then(result => (result ? 201 : 409))
       .then(result => { ctx.status = result; });
   }
 );
 
+routes.put(
+  '/:UserID',
+  {
+    validate: {
+      type: 'json',
+      params: {
+        UserID: Joi.string().max(200).required(),
+      },
+      body: {
+        UserProfile: Joi.string().required()
+      }
+    }
+  },
+  ctx => ctx.dao.updateUser(ctx.request.params.UserID, ctx.request.body.UserProfile)
+    .then(result => (result ? 200 : 404))
+    .then(result => { ctx.status = result; })
+);
 
+routes.get(
+  '/:UserID',
+  {
+    validate: {
+      params: {
+        UserID: Joi.string().max(200).required(),
+      }
+    }
+  },
+  ctx => ctx.dao.getUserProfile(ctx.request.params.UserID)
+    .then(userProfile => {
+      if (!userProfile) {
+        ctx.status = 404;
+        return;
+      }
+      ctx.status = 200;
+      ctx.body = userProfile.UserProfile;
+    })
+);
 
 module.exports = routes;
