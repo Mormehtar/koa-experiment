@@ -4,22 +4,23 @@ const Joi = Router.Joi;
 const routes = Router();
 
 routes.post(
-  '/:UserID',
+  '/',
   {
     validate: {
-      params: {
+      type: 'json',
+      body: {
         UserID: Joi.string().max(200).required(),
       }
     }
   },
   ctx => {
-    return ctx.dao.createUser(ctx.request.params.UserID)
+    return ctx.dao.createUser(ctx.request.body.UserID)
       .then(result => (result ? 201 : 409))
       .then(result => { ctx.status = result; });
   }
 );
 
-routes.put(
+routes.post(
   '/:UserID',
   {
     validate: {
