@@ -1,5 +1,5 @@
 const koa = require('koa');
-const forceSSL = require('koa-force-ssl');
+// const forceSSL = require('koa-force-ssl');
 const pgp = require('pg-promise')();
 const routes = require('./routes');
 
@@ -11,7 +11,7 @@ module.exports = config => {
   app.context.config = config;
 
   // Force SSL on all page
-  app.use(forceSSL(config.httpsPort));
+  // app.use(forceSSL(config.httpsPort));
 
   // routes
   app.use(routes.middleware());
